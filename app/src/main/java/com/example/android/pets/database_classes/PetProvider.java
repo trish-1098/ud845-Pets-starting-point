@@ -154,7 +154,9 @@ public class PetProvider extends ContentProvider {
         //Notify all listeners like CatalogActivity that the content at this uri has changed
         //After this the cursor loader again queries the database and fetches in the new data
         // with new cursor object
-        getContext().getContentResolver().notifyChange(uri,null);
+        if(numRowsDeleted != 0) {
+            getContext().getContentResolver().notifyChange(uri, null);
+        }
         return numRowsDeleted;
     }
     /**
@@ -217,7 +219,9 @@ public class PetProvider extends ContentProvider {
         //Notify all listeners like CatalogActivity that the content at this uri has changed
         //After this the cursor loader again queries the database and fetches in the new data
         // with new cursor object
-        getContext().getContentResolver().notifyChange(uri,null);
+        if(numRowsUpdated != 0) {
+            getContext().getContentResolver().notifyChange(uri, null);
+        }
         return numRowsUpdated;
     }
     /**
