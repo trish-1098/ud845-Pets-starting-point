@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/list_item_padding">
+    <TextView
+        android:id="@+id/pet_name_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="8dp"
+        tools:text="Name of pet"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:textColor="@android:color/black"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:padding="8dp">
+    <TextView
+        android:id="@+id/breed_view"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        tools:text="Breed of pet"
+        android:textAppearance="?android:textAppearanceSmall"/>
+    <TextView
+        android:id="@+id/gender_view"
+        android:layout_width="0dp"
+        android:layout_weight="2"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        tools:text="Gender of pet"
+        android:textAppearance="?android:textAppearanceSmall"/>
+    </LinearLayout>
+</LinearLayout>
