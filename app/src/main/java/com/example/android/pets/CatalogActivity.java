@@ -15,9 +15,11 @@
  */
 package com.example.android.pets;
 
+import android.app.AlertDialog;
 import android.app.LoaderManager;
 import android.content.ContentUris;
 import android.content.CursorLoader;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
@@ -93,7 +95,7 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
     private void deleteAllRecords()
     {
         int deletedAllRecords = getContentResolver().delete(PetEntry.MAIN_CONTENT_URI,null,null);
-        if(deletedAllRecords == -1)
+        if(deletedAllRecords == 0)
         {
             return;
         }
@@ -111,7 +113,7 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
                 return true;
             // Respond to a click on the "Delete all entries" menu option
             case R.id.action_delete_all_entries:
-                deleteAllRecords();
+                showDeleteAllPetsConfirmationDialog();
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -140,5 +142,26 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
     public void onLoaderReset(Loader<Cursor> loader) {
         //Called when the data needs to be deleted
         petAdapter.swapCursor(null);
+    }
+    //Confirmation dialog to delete all the pets
+    private void showDeleteAllPetsConfirmationDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(R.string.delete_all_msg);
+        builder.setPositiveButton(R.string.delete_all_button, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                deleteAllRecords();
+            }
+        });
+        builder.setNegativeButton(R.string.delete_all_cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                if(dialogInterface != null) {
+                    dialogInterface.dismiss();
+                }
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 }
