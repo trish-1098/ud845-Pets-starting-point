@@ -188,7 +188,8 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             if (uriOfInsert == null) {
                 Toast.makeText(this, getString(R.string.error_save), Toast.LENGTH_LONG).show();
             } else {
-                Toast.makeText(this, getString(R.string.pet_save) + " " + ContentUris.parseId(uriOfInsert), Toast.LENGTH_LONG).show();
+                //Correct the bug where the id of pets still increments from the previous value
+                Toast.makeText(this, getString(R.string.pet_save), Toast.LENGTH_LONG).show();
             }
         } else{
             try {

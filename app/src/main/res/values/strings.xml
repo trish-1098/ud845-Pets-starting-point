@@ -130,4 +130,10 @@
 
     <!-- All pets deleted confirmation -->
     <string name="delete_all_confirmation">Deleted all pets</string>
+
+    <!-- Display gender unknown -->
+    <string name="gender_unknown_for_listview">Unknown Gender</string>
+
+    <!-- Display breed unknown -->
+    <string name="breed_unknown_for_listview">Unknown Breed</string>
 </resources>

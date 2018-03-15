@@ -2,6 +2,7 @@ package com.example.android.pets;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,11 +39,16 @@ public class PetAdapter extends CursorAdapter {
         TextView nameOfPet = view.findViewById(R.id.pet_name_view);
         nameOfPet.setText(cursor.getString(cursor.getColumnIndex(PetEntry.COLUMN_PET_NAME)));
         TextView breedOfPet = view.findViewById(R.id.breed_view);
-        breedOfPet.setText(cursor.getString(cursor.getColumnIndex(PetEntry.COLUMN_PET_BREED)));
+        String breedOfPetString = cursor.getString(cursor.getColumnIndex(PetEntry.COLUMN_PET_BREED));
+        if(TextUtils.isEmpty(breedOfPetString)){
+            breedOfPet.setText(R.string.breed_unknown_for_listview);
+        } else {
+            breedOfPet.setText(breedOfPetString);
+        }
         TextView genderOfPet = view.findViewById(R.id.gender_view);
         switch (cursor.getInt(cursor.getColumnIndex(PetEntry.COLUMN_PET_GENDER))){
             case PetEntry.GENDER_UNKNOWN:
-                genderOfPet.setText(context.getString(R.string.gender_unknown));
+                genderOfPet.setText(context.getString(R.string.gender_unknown_for_listview));
                 break;
             case PetEntry.GENDER_MALE:
                 genderOfPet.setText(context.getString(R.string.gender_male));
